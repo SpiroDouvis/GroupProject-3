@@ -19,8 +19,11 @@ public class ReliefService {
 	 * @param lastKnownLocation
 	 */
 	public ReliefService(Inquirer inquirer, DisasterVictim missingPerson, String dateOfInquiry, String infoProvided, Location lastKnownLocation) {
-		// TODO - implement ReliefService.ReliefService
-		throw new UnsupportedOperationException();
+		this.inquirer = inquirer;
+		this.missingPerson = missingPerson;
+		this.dateOfInquiry = dateOfInquiry;
+		this.infoProvided = infoProvided;
+		this.lastKnownLocation = lastKnownLocation;
 	}
 
 	public Inquirer getInquirer() {
@@ -87,8 +90,13 @@ public class ReliefService {
 	}
 
 	public String getLogDetails() {
-		// TODO - implement ReliefService.getLogDetails
-		throw new UnsupportedOperationException();
+		StringBuilder logDetails = new StringBuilder();
+		logDetails.append("Inquirer: ").append(inquirer.getFirstName()).append("\n");
+		logDetails.append("Missing Person: ").append(missingPerson.getFirstName()).append("\n");
+		logDetails.append("Date of Inquiry: ").append(dateOfInquiry).append("\n");
+		logDetails.append("Information Provided: ").append(infoProvided).append("\n");
+		logDetails.append("Last Known Location: ").append(lastKnownLocation.toString()).append("\n");
+		return logDetails.toString();
 	}
 
 }

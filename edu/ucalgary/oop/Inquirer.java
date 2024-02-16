@@ -17,28 +17,26 @@ public class Inquirer {
 	 * @param INFO
 	 */
 	public Inquirer(String FIRST_NAME, String LAST_NAME, String SERVICES_PHONE, String INFO) {
-		// TODO - implement Inquirer.Inquirer
-		throw new UnsupportedOperationException();
+		this.FIRST_NAME = FIRST_NAME;
+		this.LAST_NAME = LAST_NAME;
+		this.SERVICES_PHONE = SERVICES_PHONE;
+		this.INFO = INFO;
 	}
 
 	public String getFirstName() {
-		// TODO - implement Inquirer.getFirstName
-		throw new UnsupportedOperationException();
+		return FIRST_NAME;
 	}
 
 	public String getLastName() {
-		// TODO - implement Inquirer.getLastName
-		throw new UnsupportedOperationException();
+		return LAST_NAME;
 	}
 
 	public String getInfo() {
-		// TODO - implement Inquirer.getInfo
-		throw new UnsupportedOperationException();
+		return INFO;
 	}
 
 	public String getServicesPhone() {
-		// TODO - implement Inquirer.getServicesPhone
-		throw new UnsupportedOperationException();
+		return SERVICES_PHONE;
 	}
 
-}
+	}
