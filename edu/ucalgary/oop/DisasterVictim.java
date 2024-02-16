@@ -4,7 +4,6 @@
  * @since 1.0
  */
 
-
 package edu.ucalgary.oop;
 
 public class DisasterVictim {

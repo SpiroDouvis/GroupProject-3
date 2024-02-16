@@ -1,3 +1,8 @@
+/**
+ * @author Spiro Douvis <a href = "mailto"; jaisumer.sandhu@ucalgary.ca>jaisumer.sandhu@ucalgary.ca</a>
+ * @version 1.3
+ * @since 1.0
+ */
 
 package edu.ucalgary.oop;
 
