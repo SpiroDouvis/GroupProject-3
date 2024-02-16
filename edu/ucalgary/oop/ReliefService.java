@@ -56,6 +56,9 @@ public class ReliefService {
 	 * @param dateOfInquiry
 	 */
 	public void setDateOfInquiry(String dateOfInquiry) {
+		if (dateOfInquiry == null || dateOfInquiry.isEmpty()) {
+			throw new IllegalArgumentException("Invalid date of inquiry");
+		}
 		this.dateOfInquiry = dateOfInquiry;
 	}
 

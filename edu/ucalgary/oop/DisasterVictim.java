@@ -1,7 +1,6 @@
 
 package edu.ucalgary.oop;
 
-
 public class DisasterVictim {
 
 	private int counter;
@@ -22,8 +21,11 @@ public class DisasterVictim {
 	 * @param ENTRY_DATE
 	 */
 	public DisasterVictim(String firstName, String ENTRY_DATE) {
-		// TODO - implement DisasterVictim.DisasterVictim
-		throw new UnsupportedOperationException();
+		if (firstName == null || firstName.isEmpty()) {
+			throw new IllegalArgumentException("First name cannot be null or empty");
+		}
+		this.firstName = firstName;
+		this.ENTRY_DATE = ENTRY_DATE;
 	}
 
 	public String getFirstName() {
@@ -59,6 +61,9 @@ public class DisasterVictim {
 	 * @param dateOfBirth
 	 */
 	public void setDateOfBirth(String dateOfBirth) {
+		if (dateOfBirth == null || dateOfBirth.isEmpty()) {
+			throw new IllegalArgumentException("Date of birth cannot be null or empty");
+		}
 		this.dateOfBirth = dateOfBirth;
 	}
 

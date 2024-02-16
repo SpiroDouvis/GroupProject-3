@@ -15,8 +15,12 @@ public class MedicalRecord {
 	 * @param dateOfTreatment
 	 */
 	public MedicalRecord(Location location, String treatmentDetails, String dateOfTreatment) {
-		// TODO - implement MedicalRecord.MedicalRecord
-		throw new UnsupportedOperationException();
+		if (location == null || treatmentDetails == null || dateOfTreatment == null) {
+			throw new IllegalArgumentException("Invalid arguments provided");
+		}
+		this.location = location;
+		this.treatmentDetails = treatmentDetails;
+		this.dateOfTreatment = dateOfTreatment;
 	}
 
 	public Location getLocation() {
@@ -52,6 +56,9 @@ public class MedicalRecord {
 	 * @param dateOfTreatment
 	 */
 	public void setDateOfTreatment(String dateOfTreatment) {
+		if (dateOfTreatment == null) {
+			throw new IllegalArgumentException("Invalid date of treatment provided");
+		}
 		this.dateOfTreatment = dateOfTreatment;
 	}
 
