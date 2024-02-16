@@ -10,14 +10,16 @@ public class FamilyRelation {
 
 	/**
 	 * 
-	 * @param personOne
+	 * @param personOne 
 	 * @param relationshipTo
 	 * @param personTwo
 	 */
 	public FamilyRelation(DisasterVictim personOne, String relationshipTo, DisasterVictim personTwo) {
-		// TODO - implement FamilyRelation.FamilyRelation
-		throw new UnsupportedOperationException();
+		this.personOne = personOne;
+		this.relationshipTo = relationshipTo;
+		this.personTwo = personTwo;
 	}
+
 
 	public DisasterVictim getPersonOne() {
 		return this.personOne;

@@ -15,13 +15,14 @@ public class Location {
 	 * @param address
 	 */
 	public Location(String name, String address) {
-		// TODO - implement Location.Location
-		throw new UnsupportedOperationException();
+		this.name = name;
+		this.address = address;
+		this.occupants = new DisasterVictim[0];
+		this.supplies = new Supply[0];
 	}
 
 	public String getName() {
-		// TODO - implement Location.getName
-		throw new UnsupportedOperationException();
+		return this.name;
 	}
 
 	/**
@@ -29,22 +30,19 @@ public class Location {
 	 * @param name
 	 */
 	public void setName(String name) {
-		// TODO - implement Location.setName
-		throw new UnsupportedOperationException();
+		this.name = name;
 	}
 
-	public void getAttribute() {
-		// TODO - implement Location.getAttribute
-		throw new UnsupportedOperationException();
+	public String getAddress() {
+		return this.address;
 	}
 
 	/**
 	 * 
-	 * @param attribute
+	 * @param address
 	 */
-	public void setAttribute(int attribute) {
-		// TODO - implement Location.setAttribute
-		throw new UnsupportedOperationException();
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public DisasterVictim[] getOccupants() {
@@ -76,8 +74,10 @@ public class Location {
 	 * @param occupant
 	 */
 	public void addOccupant(DisasterVictim occupant) {
-		// TODO - implement Location.addOccupant
-		throw new UnsupportedOperationException();
+		DisasterVictim[] updatedOccupants = new DisasterVictim[occupants.length + 1];
+		System.arraycopy(occupants, 0, updatedOccupants, 0, occupants.length);
+		updatedOccupants[occupants.length] = occupant;
+		occupants = updatedOccupants;
 	}
 
 	/**
@@ -85,8 +85,19 @@ public class Location {
 	 * @param occupant
 	 */
 	public void removeOccupant(DisasterVictim occupant) {
-		// TODO - implement Location.removeOccupant
-		throw new UnsupportedOperationException();
+		int index = -1;
+		for (int i = 0; i < occupants.length; i++) {
+			if (occupants[i].equals(occupant)) {
+				index = i;
+				break;
+			}
+		}
+		if (index != -1) {
+			DisasterVictim[] updatedOccupants = new DisasterVictim[occupants.length - 1];
+			System.arraycopy(occupants, 0, updatedOccupants, 0, index);
+			System.arraycopy(occupants, index + 1, updatedOccupants, index, occupants.length - index - 1);
+			occupants = updatedOccupants;
+		}
 	}
 
 	/**
@@ -94,8 +105,10 @@ public class Location {
 	 * @param supply
 	 */
 	public void addSupply(Supply supply) {
-		// TODO - implement Location.addSupply
-		throw new UnsupportedOperationException();
+		Supply[] updatedSupplies = new Supply[supplies.length + 1];
+		System.arraycopy(supplies, 0, updatedSupplies, 0, supplies.length);
+		updatedSupplies[supplies.length] = supply;
+		supplies = updatedSupplies;
 	}
 
 	/**
@@ -103,8 +116,19 @@ public class Location {
 	 * @param supply
 	 */
 	public void removeSupply(Supply supply) {
-		// TODO - implement Location.removeSupply
-		throw new UnsupportedOperationException();
+		int index = -1;
+		for (int i = 0; i < supplies.length; i++) {
+			if (supplies[i].equals(supply)) {
+				index = i;
+				break;
+			}
+		}
+		if (index != -1) {
+			Supply[] updatedSupplies = new Supply[supplies.length - 1];
+			System.arraycopy(supplies, 0, updatedSupplies, 0, index);
+			System.arraycopy(supplies, index + 1, updatedSupplies, index, supplies.length - index - 1);
+			supplies = updatedSupplies;
+		}
 	}
 
 }

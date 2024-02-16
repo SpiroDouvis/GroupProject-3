@@ -13,8 +13,8 @@ public class Supply {
 	 * @param quantity
 	 */
 	public Supply(String type, int quantity) {
-		// TODO - implement Supply.Supply
-		throw new UnsupportedOperationException();
+		this.type = type;
+		this.quantity = quantity;
 	}
 
 	public String getType() {
