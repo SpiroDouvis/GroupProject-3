@@ -14,7 +14,7 @@ public class DisasterVictim {
 	private String lastName;
 	private String dateOfBirth;
 	private String comments;
-	private MedicalRecord[] medicalRecord;
+	private MedicalRecord[] medicalRecords;
 	private FamilyRelation[] familyConnections;
 	private Supply[] personalBelongings;
 	private String gender;
@@ -90,7 +90,7 @@ public class DisasterVictim {
 	}
 
 	public MedicalRecord[] getMedicalRecord() {
-		return this.medicalRecord;
+		return this.medicalRecords;
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class DisasterVictim {
 	 * @param medicalRecord medical record of disaster victim as a string
 	 */
 	public void setMedicalRecord(MedicalRecord[] medicalRecord) {
-		this.medicalRecord = medicalRecord;
+		this.medicalRecords = medicalRecord;
 	}
 
 	public FamilyRelation[] getFamilyConnections() {
@@ -139,21 +139,35 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param supply adding supply to the supply list of disaster vicitm
+	 * @param supply adding supply to the supply list of disaster victim
 	 */
 	public void addPersonalBelonging(Supply supply) {
-		// TODO - implement DisasterVictim.addPersonalBelonging
-
-		throw new UnsupportedOperationException();
+		//makes a new array with previous array copied into it, and then it adds one to include new personal belongings
+		// then it recopies the new array back into the old array
+		Supply[] updatedsup = new Supply[personalBelongings.length + 1];
+		System.arraycopy(personalBelongings, 0, updatedsup, 0, personalBelongings.length);
+		updatedsup[personalBelongings.length] = supply;
+		personalBelongings = updatedsup;
 	}
 
 	/**
 	 * 
-	 * @param supply removing supply from the supply list of disaster vicitm
+	 * @param supply removing supply from the supply list of disaster victim if it is in previous array
 	 */
 	public void removePersonalBelonging(Supply supply) {
-		// TODO - implement DisasterVictim.removePersonalBelonging
-		throw new UnsupportedOperationException();
+		int index = -1;
+		for (int i = 0; i < personalBelongings.length; i++) {
+			if (personalBelongings[i].equals(supply)) {
+				index = i;
+				break;
+			}
+		}
+		if (index != -1) {
+			Supply[] updatedsup = new Supply[personalBelongings.length - 1];
+			System.arraycopy(personalBelongings, 0, updatedsup, 0, index);
+			System.arraycopy(personalBelongings, 0, updatedsup, 0, personalBelongings.length - index - 1);
+			personalBelongings = updatedsup;
+		}
 	}
 
 	/**
@@ -161,6 +175,8 @@ public class DisasterVictim {
 	 * @param familyConnection adding another family connection as Family Relation Object
 	 */
 	public void addFamilyConnection(FamilyRelation familyConnection) {
+		//makes a new array with previous array copied into it, and then it adds one to include new family connection
+		//then it recopies the new array back into the old array
 		FamilyRelation[] updatedfam = new FamilyRelation[familyConnections.length + 1];
 		System.arraycopy(familyConnections, 0, updatedfam, 0, familyConnections.length);
 		updatedfam[familyConnections.length] = familyConnection;
@@ -169,11 +185,23 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param familyConnection removing a family connection as Family Relation Object
+	 * @param familyConnection removing a family connection as Family Relation Object if it is in previous array
 	 */
 	public void removeFamilyConnection(FamilyRelation familyConnection) {
-		// TODO - implement DisasterVictim.removeFamilyConnection
-		throw new UnsupportedOperationException();
+		int index = -1;
+		for (int i = 0; i < familyConnections.length; i++) {
+			if (familyConnections[i].equals(familyConnection)) {
+				index = i;
+				break;
+			}
+		}
+		if (index != -1) {
+			//creates new array and updates it by taking out the object that user wants out
+			FamilyRelation[] updatedfam = new FamilyRelation[familyConnections.length - 1];
+			System.arraycopy(familyConnections, 0, updatedfam, 0, index);
+			System.arraycopy(familyConnections, index + 1, updatedfam, 0, familyConnections.length - index - 1);
+			familyConnections = updatedfam;
+		}
 	}
 
 	/**
@@ -181,18 +209,20 @@ public class DisasterVictim {
 	 * @param medicalRecord adding to the list of medical records
 	 */
 	public void addMedicalRecord(MedicalRecord medicalRecord) {
-		// TODO - implement DisasterVictim.addMedicalRecord
-		throw new UnsupportedOperationException();
+		//makes a new array with previous array copied into it, and then it adds one to include new medical record
+		//then it recopies the new array back into the old array
+		MedicalRecord[] updatedmed = new MedicalRecord[medicalRecords.length + 1];
+		System.arraycopy(medicalRecords, 0, updatedmed, 0, familyConnections.length);
+		updatedmed[medicalRecords.length] = medicalRecord;
+		medicalRecords = updatedmed;
 	}
 
 	public int getAssignedSocialID() {
-		// TODO - implement DisasterVictim.getAssignedSocialID
-		throw new UnsupportedOperationException();
+		return this.ASSIGNED_SOCIAL_ID;
 	}
 
 	public String getEntryDate() {
-		// TODO - implement DisasterVictim.getEntryDate
-		throw new UnsupportedOperationException();
+		return this.ENTRY_DATE;
 	}
 
 }
