@@ -1,9 +1,15 @@
+/**
+ * @author Jaisumer Sandhu, Spiro Douvis <a href = "mailto"; jaisumer.sandhu@ucalgary.ca>jaisumer.sandhu@ucalgary.ca</a>
+ * @version 1.2
+ * @since 1.0
+ */
+
 
 package edu.ucalgary.oop;
 
 public class DisasterVictim {
 
-	private int counter;
+	private static int counter = 0;
 	private String firstName;
 	private String lastName;
 	private String dateOfBirth;
@@ -12,8 +18,8 @@ public class DisasterVictim {
 	private FamilyRelation[] familyConnections;
 	private Supply[] personalBelongings;
 	private String gender;
-	private int ASSIGNED_SOCIAL_ID;
-	private String ENTRY_DATE;
+	private final int ASSIGNED_SOCIAL_ID;
+	private final String ENTRY_DATE;
 
 	/**
 	 * 
@@ -21,11 +27,15 @@ public class DisasterVictim {
 	 * @param ENTRY_DATE
 	 */
 	public DisasterVictim(String firstName, String ENTRY_DATE) {
+		//throws exception if firstname is empty
 		if (firstName == null || firstName.isEmpty()) {
 			throw new IllegalArgumentException("First name cannot be null or empty");
 		}
+		//intializes main 
 		this.firstName = firstName;
 		this.ENTRY_DATE = ENTRY_DATE;
+		this.ASSIGNED_SOCIAL_ID = counter;
+		counter += 1;
 	}
 
 	public String getFirstName() {
@@ -34,7 +44,7 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param firstName
+	 * @param firstName firstname of disaster victim as a string
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -46,7 +56,7 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param lastName
+	 * @param lastName lastname of disaster victim as a string
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
@@ -58,7 +68,7 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param dateOfBirth
+	 * @param dateOfBirth date of birth of disaster victim as a string
 	 */
 	public void setDateOfBirth(String dateOfBirth) {
 		if (dateOfBirth == null || dateOfBirth.isEmpty()) {
@@ -73,7 +83,7 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param comments
+	 * @param comments any additional comments of disaster victim as a string
 	 */
 	public void setComments(String comments) {
 		this.comments = comments;
@@ -85,7 +95,7 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param medicalRecord
+	 * @param medicalRecord medical record of disaster victim as a string
 	 */
 	public void setMedicalRecord(MedicalRecord[] medicalRecord) {
 		this.medicalRecord = medicalRecord;
@@ -97,7 +107,7 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param familyConnections
+	 * @param familyConnections family relatives of disaster victim as FamilyRelation objects
 	 */
 	public void setFamilyConnections(FamilyRelation[] familyConnections) {
 		this.familyConnections = familyConnections;
@@ -109,7 +119,7 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param personalBelongings
+	 * @param personalBelongings any of the disaster victim's personal belongings as Supply object
 	 */
 	public void setPersonalBelongings(Supply[] personalBelongings) {
 		this.personalBelongings = personalBelongings;
@@ -121,7 +131,7 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param gender
+	 * @param gender gender of disaster victim (M/F) as a string
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
@@ -129,16 +139,17 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param supply
+	 * @param supply adding supply to the supply list of disaster vicitm
 	 */
 	public void addPersonalBelonging(Supply supply) {
 		// TODO - implement DisasterVictim.addPersonalBelonging
+
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * 
-	 * @param supply
+	 * @param supply removing supply from the supply list of disaster vicitm
 	 */
 	public void removePersonalBelonging(Supply supply) {
 		// TODO - implement DisasterVictim.removePersonalBelonging
@@ -147,16 +158,18 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param familyConnection
+	 * @param familyConnection adding another family connection as Family Relation Object
 	 */
 	public void addFamilyConnection(FamilyRelation familyConnection) {
-		// TODO - implement DisasterVictim.addFamilyConnection
-		throw new UnsupportedOperationException();
+		FamilyRelation[] updatedfam = new FamilyRelation[familyConnections.length + 1];
+		System.arraycopy(familyConnections, 0, updatedfam, 0, familyConnections.length);
+		updatedfam[familyConnections.length] = familyConnection;
+		familyConnections = updatedfam;
 	}
 
 	/**
 	 * 
-	 * @param familyConnection
+	 * @param familyConnection removing a family connection as Family Relation Object
 	 */
 	public void removeFamilyConnection(FamilyRelation familyConnection) {
 		// TODO - implement DisasterVictim.removeFamilyConnection
@@ -165,7 +178,7 @@ public class DisasterVictim {
 
 	/**
 	 * 
-	 * @param medicalRecord
+	 * @param medicalRecord adding to the list of medical records
 	 */
 	public void addMedicalRecord(MedicalRecord medicalRecord) {
 		// TODO - implement DisasterVictim.addMedicalRecord
