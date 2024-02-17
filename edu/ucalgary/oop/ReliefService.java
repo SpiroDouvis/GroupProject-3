@@ -6,6 +6,9 @@
 
 package edu.ucalgary.oop;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class ReliefService {
 
@@ -64,10 +67,14 @@ public class ReliefService {
 	 * @param dateOfInquiry
 	 */
 	public void setDateOfInquiry(String dateOfInquiry) {
-		if (dateOfInquiry == null || dateOfInquiry.isEmpty()) {
-			throw new IllegalArgumentException("Invalid date of inquiry");
-		}
-		this.dateOfInquiry = dateOfInquiry;
+		//there should be proper date format for Inquiry date
+		DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate.parse(dateOfInquiry, dateformat);
+            this.dateOfInquiry = dateOfInquiry;
+        } catch (DateTimeParseException exception) {
+            throw new IllegalArgumentException("Invalid date format. What the expected format is ---> yyyy-MM-dd");
+        }
 	}
 
 	public String getInfoProvided() {

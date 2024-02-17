@@ -5,6 +5,9 @@
  */
 
 package edu.ucalgary.oop;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class DisasterVictim {
 
@@ -26,13 +29,20 @@ public class DisasterVictim {
 	 * @param ENTRY_DATE
 	 */
 	public DisasterVictim(String firstName, String ENTRY_DATE) {
+		//there should be proper date format for entry date
+		DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate.parse(ENTRY_DATE, dateformat);
+            this.ENTRY_DATE = ENTRY_DATE;
+        } catch (DateTimeParseException exception) {
+            throw new IllegalArgumentException("Invalid date format. What the expected format is ---> yyyy-MM-dd");
+        }
 		//throws exception if firstname is empty
 		if (firstName == null || firstName.isEmpty()) {
 			throw new IllegalArgumentException("First name cannot be null or empty");
 		}
 		//intializes main 
 		this.firstName = firstName;
-		this.ENTRY_DATE = ENTRY_DATE;
 		this.ASSIGNED_SOCIAL_ID = counter;
 		counter += 1;
 	}
@@ -70,10 +80,14 @@ public class DisasterVictim {
 	 * @param dateOfBirth date of birth of disaster victim as a string
 	 */
 	public void setDateOfBirth(String dateOfBirth) {
-		if (dateOfBirth == null || dateOfBirth.isEmpty()) {
-			throw new IllegalArgumentException("Date of birth cannot be null or empty");
-		}
-		this.dateOfBirth = dateOfBirth;
+		//there should be proper date format for birthday
+		DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate.parse(dateOfBirth, dateformat);
+            this.dateOfBirth = dateOfBirth;
+        } catch (DateTimeParseException exception) {
+            throw new IllegalArgumentException("Invalid date format. What the expected format is ---> yyyy-MM-dd");
+        }
 	}
 
 	public String getComments() {
@@ -143,10 +157,16 @@ public class DisasterVictim {
 	public void addPersonalBelonging(Supply supply) {
 		//makes a new array with previous array copied into it, and then it adds one to include new personal belongings
 		// then it recopies the new array back into the old array
-		Supply[] updatedsup = new Supply[personalBelongings.length + 1];
-		System.arraycopy(personalBelongings, 0, updatedsup, 0, personalBelongings.length);
-		updatedsup[personalBelongings.length] = supply;
-		personalBelongings = updatedsup;
+		if (personalBelongings == null) {
+            personalBelongings = new Supply[1];
+            personalBelongings[0] = supply;
+        }
+		else {
+			Supply[] updatedsup = new Supply[personalBelongings.length + 1];
+			System.arraycopy(personalBelongings, 0, updatedsup, 0, personalBelongings.length);
+			updatedsup[personalBelongings.length] = supply;
+			personalBelongings = updatedsup;
+		}
 	}
 
 	/**
@@ -176,10 +196,16 @@ public class DisasterVictim {
 	public void addFamilyConnection(FamilyRelation familyConnection) {
 		//makes a new array with previous array copied into it, and then it adds one to include new family connection
 		//then it recopies the new array back into the old array
-		FamilyRelation[] updatedfam = new FamilyRelation[familyConnections.length + 1];
-		System.arraycopy(familyConnections, 0, updatedfam, 0, familyConnections.length);
-		updatedfam[familyConnections.length] = familyConnection;
-		familyConnections = updatedfam;
+		if (familyConnections == null){
+            familyConnections = new FamilyRelation[1];
+            familyConnections[0] = familyConnection;
+        }
+		else {
+			FamilyRelation[] updatedfam = new FamilyRelation[familyConnections.length + 1];
+			System.arraycopy(familyConnections, 0, updatedfam, 0, familyConnections.length);
+			updatedfam[familyConnections.length] = familyConnection;
+			familyConnections = updatedfam;
+		}
 	}
 
 	/**

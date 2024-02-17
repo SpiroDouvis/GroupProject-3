@@ -39,7 +39,7 @@ public class Inquirer {
 		return INFO;
 	}
 
-	public String getServicesPhone() {
+	public String getServicesPhoneNum() {
 		return SERVICES_PHONE;
 	}
 
