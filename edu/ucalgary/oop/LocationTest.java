@@ -53,7 +53,7 @@ public class LocationTest {
     public void testAddOccupant() {
         location.addOccupant(victim);
         assertTrue("addOccupant should add a disaster victim to the occupants list", location.getOccupants().contains(victim));
-    }
+    }25
 
     @Test
     public void testRemoveOccupant() {

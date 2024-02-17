@@ -6,6 +6,9 @@
 
 package edu.ucalgary.oop;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class MedicalRecord {
 
@@ -61,10 +64,14 @@ public class MedicalRecord {
 	 * @param dateOfTreatment
 	 */
 	public void setDateOfTreatment(String dateOfTreatment) {
-		if (dateOfTreatment == null) {
-			throw new IllegalArgumentException("Invalid date of treatment provided");
-		}
-		this.dateOfTreatment = dateOfTreatment;
+		//there should be proper date format treatment date
+		DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate.parse(dateOfTreatment, dateformat);
+            this.dateOfTreatment = dateOfTreatment;
+        } catch (DateTimeParseException exception) {
+            throw new IllegalArgumentException("Invalid date format. What the expected format is ---> yyyy-MM-dd");
+        }
 	}
 
 }
