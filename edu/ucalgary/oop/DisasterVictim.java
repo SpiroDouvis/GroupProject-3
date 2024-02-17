@@ -88,7 +88,7 @@ public class DisasterVictim {
 		this.comments = comments;
 	}
 
-	public MedicalRecord[] getMedicalRecord() {
+	public MedicalRecord[] getMedicalRecords() {
 		return this.medicalRecords;
 	}
 
@@ -96,7 +96,7 @@ public class DisasterVictim {
 	 * 
 	 * @param medicalRecord medical record of disaster victim as a string
 	 */
-	public void setMedicalRecord(MedicalRecord[] medicalRecord) {
+	public void setMedicalRecords(MedicalRecord[] medicalRecord) {
 		this.medicalRecords = medicalRecord;
 	}
 
