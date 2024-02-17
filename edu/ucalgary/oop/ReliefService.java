@@ -1,5 +1,5 @@
 /**
- * @author Spiro Douvis <a href = "mailto"; spiro.douvis@ucalgary.ca>spiro.douvis@ucalgary.ca</a>
+ * @author Jaisumer Sandhu, Spiro Douvis <a href = "mailto"; spiro.douvis@ucalgary.ca>spiro.douvis@ucalgary.ca</a>
  * @version 1.1
  * @since 1.0
  */
@@ -27,6 +27,14 @@ public class ReliefService {
 	 * @param lastKnownLocation
 	 */
 	public ReliefService(Inquirer inquirer, DisasterVictim missingPerson, String dateOfInquiry, String infoProvided, Location lastKnownLocation) {
+		//there should be proper date format for Inquiry date
+		DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate.parse(dateOfInquiry, dateformat);
+            this.dateOfInquiry = dateOfInquiry;
+        } catch (DateTimeParseException exception) {
+            throw new IllegalArgumentException("Invalid date format. What the expected format is ---> yyyy-MM-dd");
+        }
 		this.inquirer = inquirer;
 		this.missingPerson = missingPerson;
 		this.dateOfInquiry = dateOfInquiry;
@@ -102,12 +110,13 @@ public class ReliefService {
 	}
 
 	public String getLogDetails() {
+		Location lastKnownLocation = getLastKnownLocation();
 		StringBuilder logDetails = new StringBuilder();
-		logDetails.append("Inquirer: ").append(inquirer.getFirstName()).append("\n");
-		logDetails.append("Missing Person: ").append(missingPerson.getFirstName()).append("\n");
-		logDetails.append("Date of Inquiry: ").append(dateOfInquiry).append("\n");
-		logDetails.append("Information Provided: ").append(infoProvided).append("\n");
-		logDetails.append("Last Known Location: ").append(lastKnownLocation.toString()).append("\n");
+		logDetails.append("Inquirer: ").append(inquirer.getFirstName()).append(", ");
+		logDetails.append("Missing Person: ").append(missingPerson.getFirstName()).append(", ");
+		logDetails.append("Date of Inquiry: ").append(dateOfInquiry).append(", ");
+		logDetails.append("Info Provided: ").append(infoProvided).append(", ");
+		logDetails.append("Last Known Location: ").append(lastKnownLocation.getName());
 		return logDetails.toString();
 	}
 

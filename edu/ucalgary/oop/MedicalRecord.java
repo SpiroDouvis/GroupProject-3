@@ -26,6 +26,14 @@ public class MedicalRecord {
 		if (location == null || treatmentDetails == null || dateOfTreatment == null) {
 			throw new IllegalArgumentException("Invalid arguments provided");
 		}
+		//there should be proper date format for treatment date
+		DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate.parse(dateOfTreatment, dateformat);
+            this.dateOfTreatment = dateOfTreatment;
+        } catch (DateTimeParseException exception) {
+            throw new IllegalArgumentException("Invalid date format. What the expected format is ---> yyyy-MM-dd");
+        }
 		this.location = location;
 		this.treatmentDetails = treatmentDetails;
 		this.dateOfTreatment = dateOfTreatment;
